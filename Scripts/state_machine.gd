@@ -13,9 +13,11 @@ func init(parent: Node) -> void:
 	
 func change_state(new_state: State):
 	if current_state:
+		print("Exiting "+str(current_state))
 		current_state.exit()
 	current_state = new_state
 	current_state.enter()
+	print("Entering "+str(current_state))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta: float) -> void:

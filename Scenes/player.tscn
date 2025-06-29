@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bv5xfldm3afs5" path="res://Scripts/player.gd" id="1_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://bhacyi0jyooy0" path="res://Assets/Models/Characters/Skeleton_Warrior.glb" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://d31h1el4l4jlc" path="res://Scripts/state_machine.gd" id="3_fkybt"]
-[ext_resource type="Script" uid="uid://boevjcgt8x0t" path="res://Scripts/state.gd" id="3_vgqql"]
 [ext_resource type="Script" uid="uid://boh3sqxoivk24" path="res://Scripts/idle_state.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://yqd2efru6dgb" path="res://Scripts/walking_state.gd" id="5_fkybt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cvnsp"]
 height = 2.10889
@@ -31,6 +31,7 @@ script = ExtResource("4_fkybt")
 walking_state = NodePath("../Walking State")
 metadata/_custom_type_script = "uid://boevjcgt8x0t"
 
-[node name="Walking State" type="Node" parent="State Machine"]
-script = ExtResource("3_vgqql")
+[node name="Walking State" type="Node" parent="State Machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_fkybt")
+idle_state = NodePath("../Idle State")
 metadata/_custom_type_script = "uid://boevjcgt8x0t"

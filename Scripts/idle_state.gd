@@ -1,9 +1,12 @@
 extends State
-@export var walking_state: State
 
+func input(event: InputEvent) -> void:
+	var input_dir := Input.get_vector("Move_Left","Move_Right","Move_Up","Move_Down")
+	var direction := (parent.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		changing_states.emit(self,"walking state")
+	if event.is_action_pressed("Attack"):
+		changing_states.emit(self,"attacking state")
 
-# Called when the node enters the scene tree for the first time.
-func input(event: InputEvent) -> State:
-	if event.is_action_pressed("Move_Up") or event.is_action_pressed("Move_Down") or event.is_action_pressed("Move_Left") or event.is_action_pressed("Move_Right"):
-		return walking_state
-	return self
+func enter():
+	parent.animation_player.play("Idle_B")

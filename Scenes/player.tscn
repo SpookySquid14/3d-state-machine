@@ -13,7 +13,7 @@ radius = 0.369629
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_6t5aa")
 
-[node name="Visuals" type="Node" parent="."]
+[node name="Visuals" type="Node3D" parent="."]
 
 [node name="Skeleton_Warrior" parent="Visuals" instance=ExtResource("1_v0iea")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -22,16 +22,14 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05444, 0)
 shape = SubResource("CylinderShape3D_cvnsp")
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_fkybt")
-starting_state = NodePath("Idle State")
+initial_state = NodePath("Idle State")
 
-[node name="Idle State" type="Node" parent="State Machine" node_paths=PackedStringArray("walking_state")]
+[node name="Idle State" type="Node" parent="State Machine"]
 script = ExtResource("4_fkybt")
-walking_state = NodePath("../Walking State")
 metadata/_custom_type_script = "uid://boevjcgt8x0t"
 
-[node name="Walking State" type="Node" parent="State Machine" node_paths=PackedStringArray("idle_state")]
+[node name="Walking State" type="Node" parent="State Machine"]
 script = ExtResource("5_fkybt")
-idle_state = NodePath("../Idle State")
 metadata/_custom_type_script = "uid://boevjcgt8x0t"

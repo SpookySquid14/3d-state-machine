@@ -1,19 +1,21 @@
 extends Node
 class_name State
 
-var parent
-# Called when the node enters the scene tree for the first time.
+signal changing_states
+
+var parent: Player
+
 func enter() -> void:
 	pass # Replace with function body.
 	
 func exit() -> void:
 	pass
 
-func input(event: InputEvent) -> State:
-	return null
+func input(event: InputEvent) -> void:
+	pass
 
-func physics_process(delta: float) -> State:
-	return null
+func physics_process(delta: float) -> void:
+	return
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func process(delta: float) -> State:
-	return null
+func process(delta: float) -> void:
+	return

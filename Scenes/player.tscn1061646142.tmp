@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3ay4gc8j4c5s"]
+
+[ext_resource type="Script" uid="uid://bv5xfldm3afs5" path="res://Scripts/player.gd" id="1_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://bhacyi0jyooy0" path="res://Assets/Models/Characters/Skeleton_Warrior.glb" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://d31h1el4l4jlc" path="res://Scripts/state_machine.gd" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://boh3sqxoivk24" path="res://Scripts/idle_state.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://yqd2efru6dgb" path="res://Scripts/walking_state.gd" id="5_fkybt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cvnsp"]
+height = 2.10889
+radius = 0.369629
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_6t5aa")
+
+[node name="Visuals" type="Node" parent="."]
+
+[node name="Skeleton_Warrior" parent="Visuals" instance=ExtResource("1_v0iea")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05444, 0)
+shape = SubResource("CylinderShape3D_cvnsp")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_fkybt")
+initial_state = NodePath("Idle State")
+
+[node name="Idle State" type="Node" parent="State Machine"]
+script = ExtResource("4_fkybt")
+metadata/_custom_type_script = "uid://boevjcgt8x0t"
+
+[node name="Walking State" type="Node" parent="State Machine"]
+script = ExtResource("5_fkybt")
+metadata/_custom_type_script = "uid://boevjcgt8x0t"
